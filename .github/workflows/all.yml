@@ -1,5 +1,5 @@
 
-name: GitHub Actions Demo
+name: All Workflows
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
@@ -17,3 +17,17 @@ jobs:
 
     - name: Test
       run: bun test
+  run-checks:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v1.1.0
+
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Install Dependencies
+      run: bun install
+
+    - name: Test
+      run: bun check
