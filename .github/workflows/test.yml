@@ -6,7 +6,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v1.1.0
+
     - name: Install Dependencies
       run: bun install
+      
     - name: Test
       run: bun test
