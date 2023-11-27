@@ -1,7 +1,12 @@
-- name: Setup Bun
-  uses: oven-sh/setup-bun@v1.1.0
 
-- name: Install Dependencies
-  run: bun install
-- name: Test
-  run: bun test
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install Dependencies
+      run: bun install
+    - name: Test
+      run: bun test
