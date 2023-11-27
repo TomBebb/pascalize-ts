@@ -2,7 +2,7 @@
   "name": "pascalize",
   "version": "0.1",
   "types": "./dist/index.d.ts",
-  "license": "BSD-3-Clause",
+  "license": "MIT",
   "type": "module",
   "publishConfig": {
     "registry": "packages.cr.mypbxtools.com"
