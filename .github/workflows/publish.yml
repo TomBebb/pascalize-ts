@@ -1,0 +1,45 @@
+
+name: All Workflows
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: 
+  push:
+    tags:
+        - v*
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v1.1.0
+
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Install Dependencies
+      run: bun install
+
+    - name: Build
+      run: bun run build
+    
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: dist
+        path: dist
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Download built artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: dist
+
+    - run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }
