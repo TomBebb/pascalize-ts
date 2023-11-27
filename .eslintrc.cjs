@@ -6,6 +6,8 @@ const config = {
     root: true,
     rules: {
         "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/ban-types": "off",
     }
 
 
