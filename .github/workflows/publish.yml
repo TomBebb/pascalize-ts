@@ -24,7 +24,6 @@ jobs:
     - name: Archive production artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: dist
         path: dist
   publish:
     runs-on: ubuntu-latest
@@ -37,9 +36,6 @@ jobs:
 
     - name: Download built artifact
       uses: actions/download-artifact@v3
-      with:
-        name: dist
-
     - run: npm publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
